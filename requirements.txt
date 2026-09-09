@@ -1,0 +1,11 @@
+configobj==5.0.9
+dbus-python==1.4.0
+greenlet==3.1.0
+msgpack==1.0.3
+packaging==25.0
+psutil==7.0.0
+pycairo==1.27.0
+PyGObject==3.50.0
+pynvim==0.5.2
+terminator==2.1.4
+wheel==0.46.1
