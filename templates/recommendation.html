@@ -5,7 +5,6 @@
         <h1>Your Restaurant: {{ restaurant }}</h1>
         <br>
         <form action="/recommendation", method="post">
-            <input type="hidden" name="cuisine" value="{{ cuisine }}" />
             <button type="submit" name="recommendation" value="Yes" />Yes
             <button type="submit" name="recommendation" value="No" />No
         </form>
