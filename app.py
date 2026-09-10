@@ -1,14 +1,18 @@
+import random
+import sqlite3
+
 from flask import Flask, redirect, render_template, request, url_for
 from markupsafe import escape
 
 VALID_CUISINES = ("mexican", "italian", "american", "asian", "bakery", "pizza")
-
+DATABASE = "dinnerfinder.db"
+HOMEPAGE = "index.html"
 app = Flask(__name__)
 
 
 @app.route("/")
 def hello_world():
-    return render_template("index.html")
+    return render_template(HOMEPAGE)
 
 
 @app.route("/recommend", methods=["POST"])
@@ -16,8 +20,21 @@ def recommend():
     selected_cuisine = request.form["cuisine"].lower()
     if selected_cuisine not in VALID_CUISINES:
         print(f"Invalid Cuisine: {selected_cuisine}")
-        return render_template("index.html")
-    return selected_cuisine
+        return render_template(HOMEPAGE)
+    con = sqlite3.connect(DATABASE)
+    cur = con.cursor()
+    res = cur.execute(
+        """
+        SELECT name
+        FROM restaurants
+        WHERE cuisine='italian'
+        """
+    )
+    restaurant_list = res.fetchall()
+    print(f"Size of restaurant list: {len(restaurant_list)}")
+    restaurant_tuple = random.choice(restaurant_list)
+    restaurant_name = restaurant_tuple[0]
+    return restaurant_name
 
 
 # @app.route("/hello")
