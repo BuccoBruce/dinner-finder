@@ -1,23 +1,24 @@
-from flask import Flask
-from flask import request
+qfrom flask import Flask, redirect, render_template, request, url_for
 from markupsafe import escape
-from flask import render_template
 
-VALID_CUISINES = ("mexican", "italian", "american")
+VALID_CUISINES = ("mexican", "italian", "american", "asian", "bakery", "pizza")
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello_world():
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route("/recommend", methods=['POST'])
+
+@app.route("/recommend", methods=["POST"])
 def recommend():
-    selected_cuisine = request.form['cuisine'].lower()
+    selected_cuisine = request.form["cuisine"].lower()
     if selected_cuisine not in VALID_CUISINES:
-        print("Invalid Cuisine!")
-        return f"Invalid Cuisine: {selected_cuisine}"
+        print(f"Invalid Cuisine: {selected_cuisine}")
+        return render_template("index.html")
     return selected_cuisine
+
 
 # @app.route("/hello")
 # @app.route("/hello/<name>")
