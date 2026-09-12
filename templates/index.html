@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <h1>Welcome to Dinner Picker!</h1>
-    <form action="/recommend" method="post">
-        <p>Please select a cuisine</p>
-        <button type="submit" name="cuisine" value="mexican">Mexican</button>
-        <button type="submit" name="cuisine" value="italian">Italian</button>
-        <button type="submit" name="cuisine" value="american">American</button>
-        <button type="submit" name="cuisine" value="asian">Asian</button>
-        <button type="submit" name="cuisine" value="bakery">Bakery</button>
-        <button type="submit" name="cuisine" value="pizza">Pizza</button>
-    </form>
-</body>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+    <!--<head>
+        <title>Dinner Finder</title>
+    </head>-->
+    <body>
+        <h1>Welcome to Dinner Picker!</h1>
+        <form action="/recommend" method="post">
+            <p>Please select a cuisine</p>
+            <div class="buttons">
+                <div class="buttons-top">
+                    <button type="submit" name="cuisine" value="mexican">Mexican</button>
+                    <button type="submit" name="cuisine" value="italian">Italian</button>
+                    <button type="submit" name="cuisine" value="american">American</button>
+                </div>
+                <br>
+                <div class="buttons-bottom">
+                    <button type="submit" name="cuisine" value="asian">Asian</button>
+                    <button type="submit" name="cuisine" value="bakery">Bakery</button>
+                    <button type="submit" name="cuisine" value="pizza">Pizza</button>
+                </div>
+            </div>
+        </form>
+    </body>
 </html>
