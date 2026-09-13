@@ -6,6 +6,7 @@
 body {
     background-color: #161f22;
     margin: 0px;
+    zoom: 1.5;
 }
 
 .flexbox-container {
