@@ -1,21 +1,65 @@
 * {
-     font-family: Arial;
+    font-family: Arial;
+    color: white;
 }
 
-.buttons {
+body {
+    background-color: #161f22;
+    margin: 0px;
+}
+
+.flexbox-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+}
+
+.flexbox-item {
+    width: 60%;
     margin: 10px;
-    margin-left: 20%;
-    margin-right: 20%;
-    siz
 }
 
-h1 {
-    margin-left: 20%;
-    margin-right: 20%;
+.flexbox-item-1 {
+    padding: 0px 10px;
+    background-color: #3d155e;
+    width: 100%;
+    margin: 0px;
+    text-align: center;
 }
 
-p {
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-right: 10px;
+.flexbox-item-2 {
+    display: flex;
+    min-height: 200px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexbox-item-3 {
+    min-height: 300px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 20px;
+    grid-column-gap: 5px;
+    justify-content: center;
+    height: 600px;
+    justify-items: center;
+    align-items: center;
+}
+
+button {
+    background-color: #3d155e;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    height: 100px;
+    width: 100px;
 }

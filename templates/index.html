@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
-    <!--<head>
-        <title>Dinner Finder</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+<!--<head>
     </head>-->
-    <body>
-        <h1>Welcome to Dinner Picker!</h1>
-        <form action="/recommend" method="post">
-            <p>Please select a cuisine</p>
-            <div class="buttons">
-                <div class="buttons-top">
-                    <button type="submit" name="cuisine" value="mexican">Mexican</button>
-                    <button type="submit" name="cuisine" value="italian">Italian</button>
-                    <button type="submit" name="cuisine" value="american">American</button>
+<title>Dinner Finder</title>
+
+<body>
+    <div class="flexbox-container">
+
+        <div class="flexbox-item flexbox-item-1">
+            <h1>Dinner Picker</h1>
+        </div>
+        
+        <div class="flexbox-item flexbox-item-2">
+            <h3>Please select a cuisine</h3>
+        </div>
+
+        <div class="flexbox-item flexbox-item-3">
+            <form action="/recommend" method="post">
+                <div class="grid-container">
+                    <div class="grid-item grid-item-1">
+                        <button type="submit" name="cuisine" value="mexican">Mexican</button>
+                    </div>
+                    <div class="grid-item grid-item-2">
+                        <button type="submit" name="cuisine" value="italian">Italian</button>
+                    </div>
+                    <div class="grid-item grid-item-3">
+                        <button type="submit" name="cuisine" value="american">American</button>
+                    </div>
+                    <div class="grid-item grid-item-4">
+                        <button type="submit" name="cuisine" value="asian">Asian</button>
+                    </div>
+                    <div class="grid-item grid-item-5">
+                        <button type="submit" name="cuisine" value="bakery">Bakery</button>
+                    </div>
+                    <div class="grid-item grid-item-6">
+                        <button type="submit" name="cuisine" value="pizza">Pizza</button>
+                    </div>
                 </div>
-                <br>
-                <div class="buttons-bottom">
-                    <button type="submit" name="cuisine" value="asian">Asian</button>
-                    <button type="submit" name="cuisine" value="bakery">Bakery</button>
-                    <button type="submit" name="cuisine" value="pizza">Pizza</button>
-                </div>
-            </div>
-        </form>
-    </body>
+            </form>
+        </div>
+
+    </div>
+</body>
+
 </html>
