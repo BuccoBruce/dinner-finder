@@ -1,12 +1,13 @@
 import os
 import random
 import sqlite3
+import db
 
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, session
 
 VALID_CUISINES = ("mexican", "italian", "american", "asian", "bakery", "pizza")
-DATABASE = "dinnerfinder.db"
+# DATABASE = "dinnerfinder.db"
 HOMEPAGE = "index.html"
 RECOMMENDATION = "recommendation.html"
 
@@ -14,10 +15,11 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ["FLASK_SECRET_KEY"]
-
+app.config["DATABASE"] = os.path.join(app.root_path, "dinnerfinder.db")
+db.init_app(app)
 
 def get_restaurant_recommendation(selected_cuisine: str) -> list:
-    con = sqlite3.connect(DATABASE)
+    con = sqlite3.connect(app.config["DATABASE"])
     cur = con.cursor()
     res = cur.execute(
         "SELECT name FROM restaurants WHERE cuisine=?",
