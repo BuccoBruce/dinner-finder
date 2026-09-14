@@ -12,7 +12,7 @@ def get_db():
         )
         g.db.row_factory = sqlite3.Row
 
-        return g.db
+    return g.db
 
 def close_db(e=None):
     db = g.pop('db', None)
@@ -60,6 +60,15 @@ def get_restaurant_recommendation(selected_cuisine: str, user_id: int) -> list:
         restaurant_list.append(restaurant[0])
     return restaurant_list
 
+def get_restaurant_table(user_id: int):
+    db = get_db()
+    query_data = db.execute(
+        "SELECT id, name, cuisine FROM restaurants WHERE user_id=?",
+        (user_id,)
+    )
+
+    return query_data.fetchall()
+
 def update_restaurant_name(old_name, new_name, user_id):
     db = get_db()
     db.execute(
@@ -76,36 +85,36 @@ def update_restaurant_cuisine(name, new_cuisine, user_id):
     )
     db.commit()
 
-def delete_restaurant(name, user_id):
+def delete_restaurant(name, user_id, restaurant_id):
     db = get_db()
     db.execute(
-        "DELETE FROM restaurants WHERE name=? AND user_id=?",
-        (name, user_id)
+        "DELETE FROM restaurants WHERE name=? AND user_id=? AND id=?",
+        (name, user_id, restaurant_id)
     )
     db.commit()
 
-def create_user(name, email, password_hash):
+def create_user(username, email, password_hash):
     db = get_db()
     db.execute(
-        "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)",
-        (name, email, password_hash)
+        "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)",
+        (username, email, password_hash)
     )
     db.commit()
 
-def get_user_id(name, password_hash):
+def get_user_id(username, password_hash):
     db = get_db()
     result = db.execute(
-        "SELECT id FROM users WHERE name=? AND password_hash=?",
-        (name, password_hash)
+        "SELECT id FROM users WHERE username=? AND password_hash=?",
+        (username, password_hash)
     )
     user = result.fetchone()
     return user["id"]
 
-def update_user_name(id, name):
+def update_user_name(id, username):
     db = get_db()
     db.execute(
-        "UPDATE users SET name=? WHERE id=?",
-        (name, id)
+        "UPDATE users SET username=? WHERE id=?",
+        (username, id)
     )
     db.commit()
 

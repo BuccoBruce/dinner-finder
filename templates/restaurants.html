@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+<title>Dinner Finder</title>
+
+<head><meta charset="UTF-8"></head>
+
+<body>
+    <div class="flexbox-container">
+
+        <div class="flexbox-item flexbox-item-1">
+            <h1>Dinner Picker</h1>
+        </div>
+
+        <div class="flexbox-item flexbox-item-2">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Cuisine</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for restaurant_row in restaurant_table %}
+                <tr>
+                    <td>{{ restaurant_row["id"] }}</td>
+                    <td>{{ restaurant_row["name"] }}</td>
+                    <td>{{ restaurant_row["cuisine"] }}</td>
+
+                    <td>
+                        <form action="/restaurants" method="post">
+                            <input type="hidden"
+                                name="restaurant_id"
+                                value="{{ restaurant_row['id'] }}">
+
+                            <button type="submit"
+                                    name="restaurant_management"
+                                    value="update_restaurant">
+                                Update
+                            </button>
+
+                            <button type="submit"
+                                    name="restaurant_management"
+                                    value="delete_restaurant">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>        
+        </div>
+
+        <div class="flexbox-item flexbox-item-3">
+            <form action="/restaurants" method="post">
+                <div class="grid-container">
+                    <div class="grid-item grid-item-1">
+                        <button type="submit" name="restaurant_management" value="add_restaurant">Add Restaurant</button>
+                    </div>
+                    <div class="grid-item grid-item-3">
+                        <button type="submit" name="restaurant_management" value="update_restaurant">Update Restaurant Cuisine</button>
+                    </div>
+                    <div class="grid-item grid-item-4">
+                        <button type="submit" name="restaurant_management" value="delete_restaurant">Delete Restaurant</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+<title>Dinner Finder</title>
+
+<head><meta charset="UTF-8"></head>
+
+<body>
+    <div class="flexbox-container">
+
+        <div class="flexbox-item flexbox-item-1">
+            <h1>Dinner Picker</h1>
+        </div>
+
+        <div class="flexbox-item flexbox-item-2">
+            <h3>Please select a user operation</h3>
+        </div>
+
+        <div class="flexbox-item flexbox-item-3">
+            <form action="/users" method="post">
+                <div class="grid-container">
+                    <div class="grid-item grid-item-1">
+                        <button type="submit" name="user_management" value="add_user">Add User</button>
+                    </div>
+                    <div class="grid-item grid-item-2">
+                        <button type="submit" name="user_management" value="get_user_id">Get User ID</button>
+                    </div>
+                    <div class="grid-item grid-item-3">
+                        <button type="submit" name="user_management" value="update_user">Update User</button>
+                    </div>
+                    <div class="grid-item grid-item-4">
+                        <button type="submit" name="user_management" value="delete_user">Delete User</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -4,12 +4,13 @@ import sqlite3
 import db
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 
 VALID_CUISINES = ("mexican", "italian", "american", "asian", "bakery", "pizza")
-# DATABASE = "dinnerfinder.db"
-HOMEPAGE = "index.html"
+HOMEPAGE = "/index.html"
 RECOMMENDATION = "recommendation.html"
+USERS = "users.html"
+RESTAURANTS = "restaurants.html"
 
 load_dotenv()
 
@@ -75,3 +76,42 @@ def recommendation():
         )
     else:
         return render_template(HOMEPAGE)
+
+@app.route("/users", methods=["GET", "POST"])
+def users():
+    if request.method == "POST":
+        resp = request.form["user_management"]
+        if resp == "add_user":
+            db.create_user("testuser4", "testuser4@test.com", "1234567")
+            return redirect("/")
+        if resp == "get_user_id":
+            print(db.get_user_id("testuser4", "1234567"))
+            return redirect("/")
+        if resp == "update_user":
+            db.update_user_email(1, "fake@fakerson.com")
+            return redirect("/")
+        if resp == "delete_user":
+            db.delete_user(1)
+            return redirect("/")
+
+    if request.method == "GET":
+        return render_template(USERS)
+
+@app.route("/restaurants", methods=["GET", "POST"])
+def restaurants():
+    if request.method == "POST":
+        resp = request.form["restaurant_management"]
+        if resp == "add_restaurant":
+            db.create_restaurant("test", "mexican", 1)
+            return redirect("/")
+        if resp == "update_restaurant":
+            db.update_restaurant_cuisine("test", "american", 1)
+            return redirect("/")
+        if resp == "delete_restaurant":
+            db.delete_restaurant("test", 1, 1)
+            return redirect("/")
+
+    if request.method == "GET":
+        user_id = 1
+        restaurant_table = db.get_restaurant_table(user_id)
+        return render_template(RESTAURANTS, restaurant_table=restaurant_table)
